@@ -1,5 +1,9 @@
+{% load staticfiles %}
 <html>
     <head>        
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+	<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+	<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.js"></script>
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
         <link href='//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
@@ -14,6 +18,7 @@
 			margin:auto;
 		}
 	</style>
+	{{form.media}}
     </head>
     <body>
         <div class="navbar navbar-inverse">
@@ -36,7 +41,7 @@
 		{% endblock %}
         </div>
 	<footer class="container-fluid text-center navbar-fixed-bottom">
-	  <p>Footer Text</p>
+	  <p>CopyRight by Ashish@2016</p>
 	</footer>
     </body>
 </html>

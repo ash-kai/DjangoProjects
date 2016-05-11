@@ -1,0 +1,50 @@
+{% extends 'ToDo/base.html' %}
+{% load toDo_tags %}
+
+{% block content %}
+
+	<form action='/ToDo/task' method='post' class='post-form sign-up'>
+	    {% csrf_token %}
+		<fieldset>
+		  <legend> Create Task </legend>
+		    {% for field in form %}
+			<div class="form-group">
+				<!--{% ifequal field|fieldtype 'DateTimeInput' %}
+					<label class="control-label" for="id_{{ field.name }}">{{ field.label }}</label>    		
+					<input type="date" class="form-control"
+					name="date1"
+					id="id_date" > 
+					<input type="time" class="form-control"
+					name="time1"
+					id="id_time" > 
+					<input type="text" class="form-control"
+					name="{{ field.name }}"
+					id="id_{{field.name}}"
+					value="{{ field.value }}" > 					
+				{% endifequal %}-->
+				{% ifequal field|fieldtype 'TextInput' %}
+					<label class="control-label" for="id_{{ field.name }}">{{ field.label }}</label>    		
+					<input type="text" class="form-control"
+					name="{{ field.name }}"
+					id="id_{{ field.name }}"
+					value="{{ field.value }}" > 
+				{% endifequal %}
+				{% ifequal field|fieldtype 'Select' %}
+					<label class="control-label" for="id_{{ field.name }}">{{ field.label }}</label>    		
+					<select class="form-control"
+					name="{{ field.name }}"
+					id="id_{{ field.name }}">
+					{% for ch in field.field.choices|optiontype %}
+						<option value="{{ch}}">							
+							{{ch}}</option>
+					{% endfor %} 
+					</select>
+				{% endifequal %}
+			</div>       			
+		    {% endfor %}
+		    <footer class="center text-center">
+		    	<input type='submit' name='dis' value='Submit' class="btn btn-default"/>
+		    </footer>
+		</fieldset>
+	</form>	  
+{% endblock %}

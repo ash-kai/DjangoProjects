@@ -1,17 +1,13 @@
 from django.shortcuts import render
 from .models import Task
 from django.http import HttpResponseRedirect, HttpResponse
-
-from .forms import AccountForm
+from datetime import datetime
+from .forms import AccountForm, NotificationForm, TaskForm
 
 # Create your views here.
 
 def index(request):
-    latest_task = Task.objects.order_by('Due Date')
-    return HttpResponse("JHey watss up")
-
-def create_Task(request):
-    pass
+    return render(request, 'ToDo/index.html',{})
 
 def error(request):
     return HttpResponse('You my friend have made an error')
@@ -19,28 +15,47 @@ def error(request):
 def default(request):
     return HttpResponse("This is the default page")
 
-def HelloUser(request):
+def success(request):
+    return HttpResponse("Your changes have been saved")
+
+def account(request):
     if request.method=='POST':
         form = AccountForm(request.POST)
-        if form.is_valid():
+        if form.is_valid():	    
             form.save()
-            return HttpResponseRedirect('Got it')
+            return HttpResponseRedirect('success')
         else:
             return HttpResponseRedirect('error')
     else:
         form = AccountForm()
-        return render(request, 'ToDo/hey.html', {'form':form})
+        return render(request, 'ToDo/accounts.html', {'form':form})
 
-def Hey(request):
-    '''
-    if 'YName' in request.POST:
-	value = request.POST.get('YName')
-	return HttpResponse("Welcome "+value)
+def task(request):
+    if request.method=='POST':
+        form = TaskForm(request.POST)
+	print form
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect('success')
+        else:	    
+            return render(request, 'ToDo/error.html', {'form':form.errors})
     else:
-	return HttpResponse("Nope not working")
-    '''
-    data = request.POST    
-    answer = ''
-    for key in data.keys():
-	answer+=key+' : '+data[key]+'\n'
-    return HttpResponse("Hey " + answer)
+        form = TaskForm()
+	date = datetime.now().strftime("%m/%d/%Y")
+	time = datetime.now().strftime("%H:%M %p")
+        return render(request, 'ToDo/task.html', {'form':form,'date1':date,'time1':time})
+
+def notification(request):
+    if request.method=='POST':
+        form = NotificationForm(request.POST)
+        if form.is_valid():
+	    taskTmp = form.save(commit=False)
+	    task.created_date = datetime.now()
+            taskTmp.save()
+            return HttpResponseRedirect('success')
+        else:
+            return HttpResponseRedirect('error')
+    else:
+        form = NotificationForm()
+        return render(request, 'ToDo/notification.html', {'form':form})
+
