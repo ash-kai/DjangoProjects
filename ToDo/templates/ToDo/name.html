@@ -1,0 +1,9 @@
+<form action='/ToDo/your-name/' method='post'>
+    {% csrf_token %}
+    {% for field in form.fields %}
+	<div>
+    	    {{ field }}
+ 	</div>
+    {% endfor %}
+    <input type='submit' name='dis' value='Submit' />
+</form>
