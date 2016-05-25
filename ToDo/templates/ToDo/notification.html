@@ -1,8 +1,11 @@
 {% extends 'ToDo/base.html' %}
+{% block title %}
+<title>Notification | ToDo Project</title>
+{% endblock %}
 
 {% block content %}
 
-	<form action='/ToDo/notification' method='post' class='post-form sign-up'>
+	<form action='' method='post' class='post-form sign-up'>
 	    {% csrf_token %}
 		<fieldset>
 		  <legend> Create Notification </legend>
@@ -20,5 +23,6 @@
 		    </footer>
 		</fieldset>
 	</form>
+
 
 {% endblock %}

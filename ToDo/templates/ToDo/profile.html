@@ -1,0 +1,51 @@
+{% extends 'ToDo/base.html' %}
+
+{% block content %}
+<h2 class="text-primary text-centertt"> User Profile Info </h2>
+
+	{% if registered %}
+	<strong class="text-info"> Thank you for registering!!! </strong>
+	<a href="/ToDo/">Go Back</a>
+	{% else %}
+		<form action='/ToDo/profile' method='post' class='post-form sign-up'>
+		    {% csrf_token %}
+			<fieldset>
+			  <legend> User Sign-Up </legend>
+			    {% for field in user_form %}
+				<div class="form-group">
+					<label class="control-label" for="id_{{ field.name }}">{{ field.label }}</label>    	
+					{% if field.help_text %}
+					<div class="alert alert-info">{{field.help_text}}</div>				
+					{% endif %}
+			      		<input type="text" class="form-control"
+						name="{{ field.name }}"
+						id="id_{{ field.name }}"
+						value="{{ field.value }}" >       
+					{% if field.errors %}  		
+						<div class="alert alert-danger form-control">{{field.errors}}</div>
+					{% endif %}
+				</div>       			
+			    {% endfor %}
+			    {% for field in profile_form %}
+				<div class="form-group">
+					<label class="control-label" for="id_{{ field.name }}">{{ field.label }}</label>    	
+					{% if field.help_text %}
+					<div class="alert alert-info">{{field.help_text}}</div>				
+					{% endif %}
+			      		<input type="text" class="form-control"
+						name="{{ field.name }}"
+						id="id_{{ field.name }}"
+						value="{{ field.value }}" >       
+					{% if field.errors %}  		
+						<div class="alert alert-danger form-control">{{field.errors}}</div>
+					{% endif %}
+				</div>       			
+			    {% endfor %}
+			    <footer class="center text-center">
+			    	<input type='submit' name='dis' value='Submit' class="btn btn-default"/>
+			    </footer>
+			</fieldset>
+		</form>
+	{% endif %}
+{% endblock %}
+
