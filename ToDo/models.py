@@ -2,6 +2,8 @@ from __future__ import unicode_literals
 
 from django.db import models
 from datetime import datetime
+from django.contrib.auth.models import User
+from djago.core.urlresolvers import reverse
 
 
 # Create your models here.
@@ -13,7 +15,7 @@ class Account(models.Model):
     phone_number = models.CharField(max_length = 15)
     email_id = models.EmailField(unique=True)
 
-    def __str__(self):
+    def __unicode__(self):
 	return ' '.join([self.first_name,self.last_name])
 
 
@@ -34,6 +36,18 @@ class Task(models.Model):
     created_date = models.DateTimeField(default=datetime.now)
     notify = models.ForeignKey(Notification, on_delete=models.CASCADE)
 
-    def __str__(self):
-	return self.task_title
+    def __unicode__(self):
+        return self.task_title
 
+    def get_absolute_url(self):
+        return reverse("", kwargs={"slug":self.slug})
+
+
+#Going to replace Account class
+#Represents the profile of the Users for the app
+class UserProfile(models.Model):
+    user = models.OneToOneField(User)
+    phone_number = models.CharField(max_length=15)
+
+    def __unicode__(self):
+	return self.user.username

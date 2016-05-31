@@ -1,0 +1,368 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"task",
+				"task_title"
+			],
+			[
+				"Noti",
+				"Notifciation"
+			],
+			[
+				"not",
+				"notificationDelete"
+			],
+			[
+				"Htt",
+				"HttpResponse〔module〕"
+			],
+			[
+				"Not",
+				"NotificationForm〔module〕"
+			],
+			[
+				"get",
+				"get_object_or_404〔module〕"
+			],
+			[
+				"mes",
+				"message"
+			],
+			[
+				"mess",
+				"messages"
+			],
+			[
+				"Http",
+				"HttpResponseRedirect〔module〕"
+			],
+			[
+				"Notif",
+				"NotificationForm"
+			],
+			[
+				"login",
+				"login_required"
+			],
+			[
+				"Us",
+				"UserProfile"
+			],
+			[
+				"User",
+				"UserForm"
+			],
+			[
+				"U",
+				"UserForm"
+			],
+			[
+				"user",
+				"user"
+			],
+			[
+				"is",
+				"is_valid"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "ToDo/views.py",
+			"settings":
+			{
+				"buffer_size": 5958,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "from __future__ import unicode_literals\n\nfrom django.db import models\nfrom datetime import datetime\nfrom django.contrib.auth.models import User\nfrom djago.core.urlresolvers import reverse\n\n\n# Create your models here.\n\n#Class structure for User-Account\nclass Account(models.Model):\n    first_name = models.CharField(max_length = 100)\n    last_name = models.CharField(max_length = 100)\n    phone_number = models.CharField(max_length = 15)\n    email_id = models.EmailField(unique=True)\n\n    def __unicode__(self):\n       return ' '.join([self.first_name,self.last_name])\n\n\n#Class structure for Notification\nclass Notification(models.Model):\n    notification_type = models.CharField(max_length=20,default=None)\n    \n    def __str__(self):\n       return self.notification_type\n\n\n#Class structure for Task\nclass Task(models.Model):\n    task_title = models.CharField(max_length=200)\n    task_description = models.CharField(max_length=500)\n    due_date = models.DateTimeField('Due Date', blank=True)\n    creator = models.ForeignKey(Account, on_delete=models.CASCADE)\n    created_date = models.DateTimeField(default=datetime.now)\n    notify = models.ForeignKey(Notification, on_delete=models.CASCADE)\n\n    def __unicode__(self):\n        return self.task_title\n\n        def get_absolute_url(self):\n            return reverse(\"\", kwargs={\"slug\":self.slug})\n\n\n#Going to replace Account class\n#Represents the profile of the Users for the app\nclass UserProfile(models.Model):\n    user = models.OneToOneField(User)\n    phone_number = models.CharField(max_length=15)\n\n    def __unicode__(self):\n       return self.user.username\n",
+			"file": "ToDo/models.py",
+			"file_size": 1586,
+			"file_write_time": 131085328669744890,
+			"settings":
+			{
+				"buffer_size": 1612,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "ToDo/urls.py",
+			"settings":
+			{
+				"buffer_size": 945,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 392.0,
+		"last_filter": "rein",
+		"selected_items":
+		[
+			[
+				"rein",
+				"Indentation: Reindent Lines"
+			],
+			[
+				"inden",
+				"Indentation: Reindent Lines"
+			]
+		],
+		"width": 593.0
+	},
+	"console":
+	{
+		"height": 0.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/home/Ash/Documents/Django/src",
+		"/home/Ash/Documents/Django/src/ToDo",
+		"/home/Ash/Documents/Django/src/ToDo/templates",
+		"/home/Ash/Documents/Django/src/ToDo/templates/ToDo"
+	],
+	"file_history":
+	[
+		"/home/Ash/Documents/Django/src/ToDo/templates/ToDo/profile.html",
+		"/home/Ash/Documents/Django/src/ToDo/templates/ToDo/index.html",
+		"/home/Ash/Documents/Django/src/ToDo/templates/ToDo/base.html",
+		"/home/Ash/Documents/Django/src/ToDo/templates/ToDo/detail.html",
+		"/home/Ash/Documents/Django/src/ToDo/templates/ToDo/notification.html",
+		"/home/Ash/Documents/Django/src/ToDo/templates/ToDo/result.html",
+		"/home/Ash/Documents/Django/src/ToDo/templates/ToDo/notificationEdit.html"
+	],
+	"find":
+	{
+		"height": 0.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 1,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "ToDo/views.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 5958,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1262,
+								1262
+							]
+						],
+						"settings":
+						{
+							"auto_complete": false,
+							"syntax": "Packages/Python/Python.sublime-syntax",
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 720.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "ToDo/models.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1612,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1612,
+								1612
+							]
+						],
+						"settings":
+						{
+							"auto_complete": false,
+							"syntax": "Packages/Python/Python.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 300.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "ToDo/urls.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 945,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								730,
+								730
+							]
+						],
+						"settings":
+						{
+							"auto_complete": false,
+							"syntax": "Packages/Python/Python.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 0.0
+	},
+	"input":
+	{
+		"height": 0.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "Packages/Python/Python.sublime-build",
+	"project": "src.sublime-project",
+	"replace":
+	{
+		"height": 0.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 380.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 250.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
